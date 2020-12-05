@@ -1,0 +1,105 @@
+{
+  "development": {
+    "DB": {
+      "host": "localhost",
+      "username": "root",
+      "password": "123456",
+      "port": 3306,
+      "db": "demo",
+      "dialect": "mysql",
+      "dialectOptions": {
+        "dateStrings": true,
+        "typeCast": true
+      },
+      "define": {
+        "charset": "utf8mb4",
+        "collate": "utf8mb4_bin"
+      },
+      "timezone": "+05:30",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+  },
+  "test": {
+    "DB": {
+      "host": "vvv",
+      "username": "root",
+      "password": "",
+      "port": 3306,
+      "db": "dddd",
+      "dialect": "mysql",
+      "dialectOptions": {
+        "dateStrings": true,
+        "typeCast": true
+      },
+      "define": {
+        "charset": "utf8mb4",
+        "collate": "utf8mb4_bin"
+      },
+      "timezone": "+05:30",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+
+  },
+  "staging": {
+    "DB": {
+      "host": "vv",
+      "username": "root",
+      "password": "@2019",
+      "port": 3306,
+      "db": "",
+      "dialect": "mysql",
+      "dialectOptions": {
+        "dateStrings": true,
+        "typeCast": true
+      },
+      "define": {
+        "charset": "utf8mb4",
+        "collate": "utf8mb4_bin"
+      },
+      "timezone": "+05:30",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+
+  },
+  "production": {
+    "DB": {
+      "host": "",
+      "username": "root",
+      "password": "@2019",
+      "port": 3306,
+      "db": "",
+      "dialect": "mysql",
+      "dialectOptions": {
+        "dateStrings": true,
+        "typeCast": true
+      },
+      "define": {
+        "charset": "utf8mb4",
+        "collate": "utf8mb4_bin"
+      },
+      "timezone": "+05:30",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+
+  }
+}
