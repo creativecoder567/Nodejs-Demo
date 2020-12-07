@@ -3,7 +3,7 @@
     "DB": {
       "host": "localhost",
       "username": "root",
-      "password": "123456",
+      "password": "",
       "port": 3306,
       "db": "demo",
       "dialect": "mysql",
