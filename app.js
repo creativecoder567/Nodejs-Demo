@@ -9,10 +9,12 @@ var usersRouter = require('./src/routes/users');
 const env = process.env.NODE_ENV || 'development';
 const envConfig = require('./config/config.json')[env].DB;
 const logger = require("./utilty/logSetup");
+const bodyParser = require('body-parser');
 
 var app = express();
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(bodyParser.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

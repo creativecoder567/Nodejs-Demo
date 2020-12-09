@@ -1,4 +1,5 @@
 const db = require('../model/index');
+var apiService = require('../service/api_service');
 
 exports.fetchBannerServiceData = async (req, res, next) => {
     try {
@@ -41,4 +42,60 @@ exports.serviceDetail = async (req, res, next) => {
 
 }
 
+
+exports.createService = async (req, res, next) => {
+    try {
+        var body = req.body;
+
+        await apiService.serviceCreate({
+            name: body.name,
+            desc: body.desc,
+            images: body.images,
+            address: body.address,
+            service_category_id: body.service_category_id,
+            price: body.price,
+        });
+
+        res.json({success: true});
+
+    } catch (e) {
+        console.log(e);
+        res.json({success: false});
+    }
+}
+
+
+exports.createBanner = async (req, res, next) => {
+    try {
+        var body = req.body;
+        await apiService.bannerCreate(
+            {
+                image: body.image,
+                target_id: body.target_id,
+                target_type: body.target_type,
+            }
+        );
+        res.json({success: true});
+    } catch (e) {
+        console.log(e);
+        res.json({success: false});
+    }
+
+}
+
+exports.createServiceCategory = async (req, res, next) => {
+    try {
+        var body = req.body;
+        await apiService.serviceCategoryCreate(
+            {
+                image: body.image,
+                name: body.name,
+            }
+        );
+        res.json({success: true});
+    } catch (e) {
+        console.log(e);
+        res.json({success: false});
+    }
+}
 

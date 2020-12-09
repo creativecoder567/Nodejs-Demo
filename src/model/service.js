@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, Sequelize) => {
-    const child = sequelize.define('service',
+    const service = sequelize.define('service',
         {
             id: {
                 type: Sequelize.BIGINT,
@@ -10,6 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             },
             name: {
                 type: Sequelize.STRING,
+                allowNull: false,
             },
             desc: {
                 type: Sequelize.STRING,
@@ -52,5 +53,15 @@ module.exports = (sequelize, Sequelize) => {
             tableName: 'service'
         },
     );
-    return child;
+
+    service.associate = function (models) {
+        // associations can be defined here
+        service.belongsTo(models.service_category, {
+            foreignKey: 'id',
+
+        });
+    }
+
+
+    return service;
 }

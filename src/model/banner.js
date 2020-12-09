@@ -10,6 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             },
             image: {
                 type: Sequelize.STRING,
+                allowNull: false,
             },
             target_id: {
                 type: Sequelize.INTEGER
