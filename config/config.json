@@ -5,7 +5,7 @@
       "username": "root",
       "password": "",
       "port": 3306,
-      "db": "05IgFeWOgZ",
+      "db": "Demo",
       "dialect": "mysql",
       "dialectOptions": {
         "dateStrings": true,
@@ -52,11 +52,11 @@
   },
   "staging": {
     "DB": {
-      "host": "vv",
-      "username": "root",
-      "password": "@2019",
+      "host": "remotemysql.com",
+      "username": "05IgFeWOgZ",
+      "password": "mXOGxaqiwh",
       "port": 3306,
-      "db": "",
+      "db": "05IgFeWOgZ",
       "dialect": "mysql",
       "dialectOptions": {
         "dateStrings": true,
