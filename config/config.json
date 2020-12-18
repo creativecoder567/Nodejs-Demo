@@ -3,9 +3,9 @@
     "DB": {
       "host": "localhost",
       "username": "root",
-      "password": "123456",
+      "password": "",
       "port": 3306,
-      "db": "demo",
+      "db": "05IgFeWOgZ",
       "dialect": "mysql",
       "dialectOptions": {
         "dateStrings": true,
@@ -78,11 +78,11 @@
   },
   "production": {
     "DB": {
-      "host": "",
-      "username": "root",
-      "password": "@2019",
+      "host": "remotemysql.com",
+      "username": "05IgFeWOgZ",
+      "password": "mXOGxaqiwh",
       "port": 3306,
-      "db": "",
+      "db": "05IgFeWOgZ",
       "dialect": "mysql",
       "dialectOptions": {
         "dateStrings": true,
