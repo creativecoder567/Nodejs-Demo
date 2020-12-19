@@ -12,15 +12,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="utf-8">
 <meta name="keywords" content="Gudiyatham" />
 <meta name="description" content="You can contact us for our services like website building,app development,Home Interior and Exterior Design,Bus Timings,Ticket Bookings"/>
-
-    <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
 
         function hideURLbar() {
             window.scrollTo(0, 1);
-        }
+		}
+		
+		var formData = JSON.stringify($("#contactform").serializeArray());
+
+		// var frm = $('#contactform');
+             
+		formData.submit(function (e) {
+      console.log(formData);
+        e.preventDefault();
+		$.ajax({
+  type: "POST",
+  url: "http://192.168.43.8:3000/api/add_contact_message",
+  data: formData,
+  success: function(data){
+	console.log('Submission was successful.');
+  },
+  dataType: "json",
+  contentType : "application/json"
+});l̥
+        // $.ajax({
+        //     type: frm.attr('method'),
+        //     url: frm.attr('action'),
+        //     data: frm.serialize(),
+        //     success: function (data) {
+        //         console.log('Submission was successful.');
+        //         console.log(data);
+        //     },
+        //     error: function (data) {
+        //         console.log('An error occurred.');
+        //         console.log(data);
+        //     },
+        // });
+    });
     </script>
 
 	<!-- css files -->
@@ -90,28 +122,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="container py-md-3">
 		<h2 class="heading text-capitalize text-center mb-lg-5 mb-sm-4 mb-3"> Contact Us</h2>
 		<div class="contact-form">
-			<form action="#" method="post">
+			<form action="http://192.168.43.8:3000/api/add_contact_message" name="contactform" method="post">
 				<div class="row main-w3layouts-sectns">
 					<div class="col-lg-3 col-md-6 w3-btm-spc form-text1">
 						<label> Your Name:</label>
-						<input type="text" name="Name" placeholder="" required="">
+						<input type="text" name="Name" id="name" placeholder="" required="">
 					</div>
 					<div class="col-lg-3 col-md-6 w3-btm-spc form-text2">
 						<label>Phone Number:</label>
-						<input type="text" name="Phone no" placeholder="" required="">
+						<input type="text" name="Phone no" id="mobile" placeholder="" required="">
 					</div>
 					<div class="col-lg-3 col-md-6 w3-btm-spc form-text1">
 						<label>Email Address:</label>
-						<input type="email" name="email" placeholder="" required="">
+						<input type="email" name="email" id="email" placeholder="" required="">
 					</div>
 					<div class="col-lg-3 col-md-6 w3-btm-spc form-text2">
 						<label>Subject:</label>
-						<input type="text" name="subject" placeholder="" required="">
+						<input type="text" name="subject" id="subject" placeholder="" required="">
 					</div>
 				</div>
 				<div class="main-w3layouts-sectns ">
 					<div class="w3-btm-spc form-text2 p-0">
-						<textarea placeholder=""></textarea>
+						<label>Message:</label>
+						<textarea id="message" placeholder=""></textarea>
 					</div>
 				</div>
 				<button class="btn"> Submit</button>
