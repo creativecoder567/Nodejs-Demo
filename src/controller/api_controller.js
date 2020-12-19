@@ -99,3 +99,22 @@ exports.createServiceCategory = async (req, res, next) => {
     }
 }
 
+
+exports.addContactMessage = async (req, res, next) => {
+    try {
+        var body = req.body;
+        await apiService.addContactMessage(
+            {
+                name: body.name,
+                email: body.email,
+                mobile: body.mobile,
+                subject: body.subject,
+                message: body.message,
+            }
+        );
+        res.json({success: true});
+    } catch (e) {
+        console.log(e);
+        res.json({success: false});
+    }
+}

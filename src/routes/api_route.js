@@ -11,4 +11,7 @@ router.post("/create_banner", api.createBanner);
 router.post("/create_service", api.createService);
 router.post("/create_service_category", api.createServiceCategory);
 
+router.post("/add_contact_message", api.addContactMessage);
+
+
 module.exports = router;
