@@ -3,6 +3,8 @@ const service = db['service'];
 const serviceCategory = db['service_category'];
 const banner = db['banner'];
 const contact_us = db['contact_us'];
+const service_media = db['service_media'];
+
 
 
 exports.serviceCreate = async (data) => {
@@ -10,12 +12,25 @@ exports.serviceCreate = async (data) => {
         var r = await service.create(data, {
             returning: true, individualHooks: true
         });
-        return r;
+        return r.id;
     } catch (e) {
         console.log("eppp---", e);
         throw e;
     }
 };
+
+
+exports.serviceCreateImage = async (medias) => {
+
+
+    try {
+        var r = await service_media.bulkCreate(medias);
+        return r;
+    } catch (e) {
+        console.log("eppp---", e);
+        throw e;
+    }
+}
 
 exports.serviceCategoryCreate = async (data) => {
     try {

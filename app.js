@@ -14,10 +14,11 @@ const bodyParser = require('body-parser');
 var app = express();
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(bodyParser.json({ limit: '5mb' }));
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src/views'));
@@ -30,7 +31,14 @@ app.use('/', require('./src/routes/ui_route'));
 app.use('/api', require('./src/routes/api_route'));
 
 
+app.use(function (err, req, res, next) {
+    console.log('This is the invalid field ->', err)
 
+    if (err) {
+        res.json({success: false, message: err});
+    }
+
+})
 const sequelize = new Sequelize(envConfig.db, envConfig.username, envConfig.password, {
     host: envConfig.host,
     dialect: envConfig.dialect,
@@ -48,9 +56,9 @@ sequelize
     .then(() => {
         logger.info('DB Connection has been established successfully.');
 
-    }).then(()=>{
+    }).then(() => {
 
-        require('./src/model/index').sequelize;
+    require('./src/model/index').sequelize;
 })
     .catch(err => {
         logger.error('Unable to connect to the database:', err);

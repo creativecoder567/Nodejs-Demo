@@ -22,10 +22,22 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING
             },
             service_category_id: {
-                type: Sequelize.INTEGER
+                type: Sequelize.BIGINT
             },
             price: {
                 type: Sequelize.DOUBLE,
+            },
+            lat: {
+                type: Sequelize.DOUBLE,
+            },
+            lng: {
+                type: Sequelize.DOUBLE,
+            },
+            mobile: {
+                type: Sequelize.STRING
+            },
+            pincode: {
+                type: Sequelize.BIGINT
             },
             createdAt: {
                 type: 'DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3)'
@@ -55,11 +67,28 @@ module.exports = (sequelize, Sequelize) => {
     );
 
     service.associate = function (models) {
-        // associations can be defined here
+        //associations can be defined here
         service.belongsTo(models.service_category, {
-            foreignKey: 'id',
+            foreignKey: 'service_category_id',
 
         });
+
+        service.hasMany(models.service_media, {
+            foreignKey: "service_id",
+            as: "service_idxxxx"
+        });
+
+        models.service_media.belongsTo(service, {
+            foreignKey: "service_id",
+            as: "idXXXX",
+        });
+
+/*
+        Tutorial.hasMany(Comment, { as: "comments" });
+        Comment.belongsTo(Tutorial, {
+            foreignKey: "tutorialId",
+            as: "tutorial",
+        });*/
     }
 
 

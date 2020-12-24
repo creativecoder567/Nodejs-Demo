@@ -1,6 +1,7 @@
 {
   "development": {
     "DB": {
+      "baseUrl": "http://localhost:3000/",
       "host": "localhost",
       "username": "root",
       "password": "",
@@ -26,6 +27,7 @@
   },
   "test": {
     "DB": {
+      "baseUrl": "http://localhost:3000/",
       "host": "vvv",
       "username": "root",
       "password": "",
@@ -48,10 +50,10 @@
         "idle": 10000
       }
     }
-
   },
   "staging": {
     "DB": {
+      "baseUrl": "http://localhost:3000/",
       "host": "remotemysql.com",
       "username": "05IgFeWOgZ",
       "password": "mXOGxaqiwh",
@@ -74,7 +76,6 @@
         "idle": 10000
       }
     }
-
   },
   "production": {
     "DB": {
@@ -100,6 +101,5 @@
         "idle": 10000
       }
     }
-
   }
 }
