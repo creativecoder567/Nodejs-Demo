@@ -14,7 +14,7 @@ exports.fetchBannerServiceData = async (req, res, next) => {
         );
     } catch (e) {
         console.log(e);
-        throw e;
+        res.json({success: false, message: "Error"});
     }
 
 }
@@ -28,7 +28,7 @@ exports.services = async (req, res, next) => {
         return res.json(result);
     } catch (e) {
         console.log(e);
-        throw e;
+        res.json({success: false, message: "Error"});
     }
 
 }
@@ -36,12 +36,17 @@ exports.services = async (req, res, next) => {
 exports.serviceDetail = async (req, res, next) => {
     try {
         var place_id = req.params.place_id;
-        let result = await db.sequelize.query(`select * from service where id ='${place_id}' `,
+
+        var q = `SELECT s.*, GROUP_CONCAT(sm.image)as images, sc.name as  service_category_name FROM \`service\` s 
+            inner join service_category sc on sc.id=s.service_category_id 
+                left join service_media sm on s.id=sm.service_id  where s.id ='${place_id}' GROUP BY s.id`;
+
+        let result = await db.sequelize.query(q,
             {type: db.sequelize.QueryTypes.SELECT})
         return res.json(result);
     } catch (e) {
         console.log(e);
-        throw e;
+        res.json({success: false, message: "Error"});
     }
 
 }
@@ -58,7 +63,6 @@ exports.createService = async (req, res, next) => {
         var sid = await apiService.serviceCreate({
             name: body.name,
             desc: body.desc,
-            images: body.images,
             address: body.address,
             service_category_id: body.service_category_id,
             price: body.price,
@@ -152,7 +156,7 @@ exports.createServiceCategory = async (req, res, next) => {
 
             await apiService.serviceCategoryCreate(
                 {
-                    image:trayPath,
+                    image: trayPath,
                     name: body.name,
                 }
             );
