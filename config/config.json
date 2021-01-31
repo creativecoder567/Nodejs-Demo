@@ -79,6 +79,7 @@
   },
   "production": {
     "DB": {
+      "baseUrl": "https://gudiyathamservices.herokuapp.com/",
       "host": "remotemysql.com",
       "username": "05IgFeWOgZ",
       "password": "mXOGxaqiwh",

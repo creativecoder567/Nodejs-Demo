@@ -7,8 +7,10 @@ var fs = require('fs');
 
 exports.fetchBannerServiceData = async (req, res, next) => {
     try {
+        let cityId = req.query.city_id;
         let result = await db.sequelize.query(`select * from banner`, {type: db.sequelize.QueryTypes.SELECT})
-        let result2 = await db.sequelize.query(`select * from service_category`, {type: db.sequelize.QueryTypes.SELECT})
+        let result2 = await db.sequelize.query(`select * from service_category sc WHERE id in
+         (SELECT service_category_id from service WHERE service_city_id=${cityId})`, {type: db.sequelize.QueryTypes.SELECT})
         return res.json(
             {banner: result, service_category: result2}
         );
@@ -17,6 +19,31 @@ exports.fetchBannerServiceData = async (req, res, next) => {
         res.json({success: false, message: "Error"});
     }
 
+}
+exports.fetchServiceCity = async (req, res, next) => {
+    try {
+        let result = await db.sequelize.query(`select * from service_city`, {type: db.sequelize.QueryTypes.SELECT})
+        return res.json(result);
+    } catch (e) {
+        console.log(e);
+        res.json({success: false, message: "Error"});
+    }
+
+}
+
+exports.addServiceCity = async (req, res, next) => {
+    try {
+        var body = req.body;
+        await apiService.addServiceCity(
+            {
+                name: body.name
+            }
+        );
+        res.json({success: true, message: "Success"});
+    } catch (e) {
+        console.log(e);
+        res.json({success: false});
+    }
 }
 
 exports.services = async (req, res, next) => {
@@ -65,6 +92,7 @@ exports.createService = async (req, res, next) => {
             desc: body.desc,
             address: body.address,
             service_category_id: body.service_category_id,
+            service_city_id: body.service_city_id,
             price: body.price,
             lat: body.lat,
             lng: body.lng,

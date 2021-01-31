@@ -5,6 +5,8 @@ var path = require('path');
 var fs = require('fs');
 var api = require('../controller/api_controller');
 
+router.get('/service_city', api.fetchServiceCity);
+router.post('/add_service_city', api.addServiceCity);
 router.get('/banner_with_service', api.fetchBannerServiceData);
 router.get('/service/:cat_id', api.services);
 router.get('/service_detail/:place_id', api.serviceDetail);
