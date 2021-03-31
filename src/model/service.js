@@ -19,7 +19,12 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING
             },
             service_category_id: {
-                type: Sequelize.BIGINT
+                type: Sequelize.BIGINT,
+                allowNull: false,
+            },
+            service_city_id: {
+                type: Sequelize.BIGINT,
+                allowNull: false,
             },
             price: {
                 type: Sequelize.DOUBLE,
@@ -31,7 +36,8 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.DOUBLE,
             },
             mobile: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             pincode: {
                 type: Sequelize.BIGINT
@@ -67,6 +73,11 @@ module.exports = (sequelize, Sequelize) => {
         //associations can be defined here
         service.belongsTo(models.service_category, {
             foreignKey: 'service_category_id',
+
+        });
+
+        service.belongsTo(models.service_city, {
+            foreignKey: 'service_city_id',
 
         });
 
