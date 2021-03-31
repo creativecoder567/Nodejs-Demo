@@ -10,7 +10,7 @@ exports.fetchBannerServiceData = async (req, res, next) => {
         let cityId = req.query.city_id;
         let result = await db.sequelize.query(`select * from banner`, {type: db.sequelize.QueryTypes.SELECT})
         let result2 = await db.sequelize.query(`select * from service_category sc WHERE id in
-         (SELECT service_category_id from service WHERE service_city_id=${cityId})`, {type: db.sequelize.QueryTypes.SELECT})
+         (SELECT service_category_id from service WHERE service_city_id='${cityId}')`, {type: db.sequelize.QueryTypes.SELECT})
         return res.json(
             {banner: result, service_category: result2}
         );
