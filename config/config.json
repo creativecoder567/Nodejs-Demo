@@ -1,12 +1,11 @@
 {
   "development": {
     "DB": {
-      "baseUrl": "http://localhost:3000/",
-      "host": "localhost",
-      "username": "root",
-      "password": "",
+      "host": "remotemysql.com",
+      "username": "05IgFeWOgZ",
+      "password": "mXOGxaqiwh",
       "port": 3306,
-      "db": "Demo",
+      "db": "05IgFeWOgZ",
       "dialect": "mysql",
       "dialectOptions": {
         "dateStrings": true,
@@ -79,7 +78,6 @@
   },
   "production": {
     "DB": {
-      "baseUrl": "https://gudiyathamservices.herokuapp.com/",
       "host": "remotemysql.com",
       "username": "05IgFeWOgZ",
       "password": "mXOGxaqiwh",
